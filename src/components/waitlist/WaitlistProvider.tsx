@@ -30,6 +30,7 @@ export function useWaitlist(): WaitlistContextValue {
 
 export function WaitlistProvider({ children }: { children: ReactNode }) {
   const [isOpen, setIsOpen] = useState(false);
+  const [session, setSession] = useState(0);
 
   useEffect(() => {
     captureAttribution();
@@ -37,6 +38,7 @@ export function WaitlistProvider({ children }: { children: ReactNode }) {
 
   const open = useCallback((source: string) => {
     trackEvent("waitlist_cta_clicked", { source });
+    setSession((current) => current + 1);
     setIsOpen(true);
   }, []);
 
@@ -51,6 +53,7 @@ export function WaitlistProvider({ children }: { children: ReactNode }) {
         labelledBy="waitlist-modal-heading"
       >
         <WaitlistForm
+          key={session}
           headingId="waitlist-modal-heading"
           source="modal"
           onDone={() => undefined}
