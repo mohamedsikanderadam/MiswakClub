@@ -1,0 +1,96 @@
+@import "tailwindcss";
+
+/* ---------------------------------------------------------------------------
+   Miswak Club design tokens.
+   Change a value here and it propagates across the whole site.
+--------------------------------------------------------------------------- */
+@theme {
+  --color-forest: #183d2b;
+  --color-heritage: #31583e;
+  --color-sand: #c59a5b;
+  --color-cream: #f7f3ea;
+  --color-soft-sand: #e8ddca;
+  --color-charcoal: #252a26;
+
+  --color-background: var(--color-cream);
+  --color-foreground: var(--color-charcoal);
+
+  --font-serif: var(--font-cormorant), "Cormorant Garamond", Georgia, serif;
+  --font-sans: var(--font-manrope), Inter, system-ui, sans-serif;
+
+  --radius-xs: 2px;
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 16px;
+  --radius-pill: 999px;
+
+  --shadow-soft: 0 18px 45px -30px rgba(24, 61, 43, 0.45);
+  --shadow-lift: 0 30px 60px -35px rgba(24, 61, 43, 0.55);
+
+  --breakpoint-xs: 23.4375rem;
+
+  --ease-brand: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  body {
+    background-color: var(--color-cream);
+    color: var(--color-charcoal);
+    font-family: var(--font-sans);
+    font-synthesis-weight: none;
+    text-rendering: optimizeLegibility;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-serif);
+    font-weight: 400;
+    letter-spacing: -0.01em;
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  ::selection {
+    background-color: var(--color-forest);
+    color: #fff;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-sand);
+    outline-offset: 3px;
+  }
+}
+
+/* Scroll reveal: hidden state only applies when motion is allowed, so
+   content is always visible for reduced-motion users and if JS fails. */
+@media (prefers-reduced-motion: no-preference) {
+  .reveal {
+    opacity: 0;
+    transform: translateY(18px);
+    transition:
+      opacity 0.9s var(--ease-brand),
+      transform 0.9s var(--ease-brand);
+    transition-delay: var(--reveal-delay, 0ms);
+  }
+
+  .reveal[data-revealed="true"] {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
