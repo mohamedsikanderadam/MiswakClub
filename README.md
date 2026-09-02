@@ -229,6 +229,9 @@ immediately for those users).
 5. Deploy, then verify: waitlist signup, duplicate handling, `?ref=` capture,
    welcome email, `/admin` login, CSV export, `robots.txt`, `sitemap.xml`.
 
+[`docs/go-live.md`](docs/go-live.md) walks through this end to end, including
+the content and legal decisions that must be made first.
+
 ---
 
 ## Phase 2 and beyond
